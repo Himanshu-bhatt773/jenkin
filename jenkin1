@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('run a command') {
+            steps {
+                sh '''
+                date
+                pwd
+                ls
+                ls
+                '''
+            }
+        }
+        stage('env print ') {
+            input {
+                message "helo himanshy"
+                ok "hy himanshu"
+            }
+            steps {
+                sh 'echo "${BUILD_ID}"'
+            }
+        }        
+        stage('deploy') {
+            steps {
+                echo 'Hello World deploy '
+            }
+        }        
+    }
+  post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }    
+}
